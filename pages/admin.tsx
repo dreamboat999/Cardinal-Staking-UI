@@ -20,7 +20,7 @@ import { useEnvironmentCtx } from 'providers/EnvironmentProvider'
 import { useUserTokenData } from 'providers/TokenDataProvider'
 import { TailSpin } from 'react-loader-spinner'
 import * as splToken from '@solana/spl-token'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Select from 'react-select'
 import { parseMintNaturalAmountFromDecimal } from 'common/units'
 
@@ -36,7 +36,8 @@ function Admin() {
   const [rewardAmount, setRewardAmount] = useState<string>('')
   const [rewardDurationSeconds, setRewardDurationSeconds] = useState<string>('')
   const [rewardMintAddress, setRewardMintAddress] = useState<string>('')
-  const [rewardDistribution, setRewardDistribution] = useState<string>('0')
+  const [rewardDistributorKind, setRewardDistributorKind] =
+    useState<RewardDistributorKind>()
   const [rewardMintSupply, setRewardMintSupply] = useState<string>('')
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true)
   const [processingMintAddress, setProcessingMintAddress] =
@@ -110,14 +111,11 @@ function Admin() {
       ) {
         throw 'Both reward amount and reward duration must be specified'
       }
-      if ((rewardAmount || rewardMintAddress) && rewardDistribution === '0') {
+      if ((rewardAmount || rewardMintAddress) && !rewardDistributorKind) {
         throw 'Reward distribution must be specified (cannot be none)'
       }
-      if (rewardDistribution === '1' && !rewardMintSupply) {
-        throw 'Reward mint supply must be specified (cannot be none)'
-      }
       if (
-        (rewardAmount || rewardMintAddress || rewardDistribution !== '0') &&
+        (rewardAmount || rewardMintAddress || rewardDistributorKind) &&
         (!rewardAmount || !rewardMintAddress)
       ) {
         throw 'Please fill out all the fields for reward distribution paramters'
@@ -149,12 +147,6 @@ function Admin() {
       const rewardDurationSecondsBN = rewardDurationSeconds
         ? new BN(parseInt(rewardDurationSeconds))
         : undefined
-      const rewardDistributorKind =
-        rewardDistribution === '1'
-          ? RewardDistributorKind.Mint
-          : rewardDistribution === '2'
-          ? RewardDistributorKind.Treasury
-          : undefined
       const supply = rewardMintSupply
         ? new BN(
             parseMintNaturalAmountFromDecimal(
@@ -180,7 +172,7 @@ function Admin() {
       )
 
       if (rewardDistributorKind) {
-        const rewardDistributionParams = {
+        const rewardDistributorKindParams = {
           stakePoolId: stakePoolPK,
           rewardMintId: rewardMintPublicKey!,
           rewardAmount: rewardAmountBN,
@@ -202,7 +194,7 @@ function Admin() {
           transaction,
           connection,
           wallet as Wallet,
-          rewardDistributionParams
+          rewardDistributorKindParams
         )
       }
 
@@ -395,7 +387,12 @@ function Admin() {
                         className="mb-3"
                         isSearchable={false}
                         onChange={(option) =>
-                          setRewardDistribution(option!.value)
+                          setRewardDistributorKind(
+                            {
+                              '1': RewardDistributorKind.Mint,
+                              '2': RewardDistributorKind.Treasury,
+                            }[option?.value ?? '']
+                          )
                         }
                         defaultValue={{ label: 'None', value: '0' }}
                         options={[
@@ -405,7 +402,7 @@ function Admin() {
                         ]}
                       />
                     </div>
-                    {rewardDistribution !== '0' && (
+                    {rewardDistributorKind && (
                       <>
                         <div className="relative mb-6 mt-4 w-full px-3 md:mb-0">
                           {processingMintAddress ? (
@@ -472,7 +469,8 @@ function Admin() {
                               />
                             </div>
 
-                            {rewardDistribution === '2' && (
+                            {rewardDistributorKind ===
+                              RewardDistributorKind.Treasury && (
                               <div className="mb-6 mt-4 w-full px-3 md:mb-0">
                                 <FormFieldTitleInput
                                   title={'Reward Transfer Amount'}
@@ -499,10 +497,10 @@ function Admin() {
                   </div>
                 </div>
                 <button
-                  disabled={rewardDistribution !== '0' && submitDisabled}
+                  disabled={rewardDistributorKind && submitDisabled}
                   type="button"
                   className={
-                    submitDisabled && rewardDistribution !== '0'
+                    submitDisabled && rewardDistributorKind
                       ? 'mt-4 inline-block rounded-md bg-blue-700 px-4 py-2 opacity-50'
                       : 'mt-4 inline-block rounded-md bg-blue-700 px-4 py-2'
                   }
