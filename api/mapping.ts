@@ -23,4 +23,20 @@ export const poolMapping: [{ name: string; pool: PublicKey }] = [
       fontColor: '#1fcfb1',
     },
   },
+  {
+    name: 'okaybulls',
+    displayName: 'Okaybulls',
+    pubkey: new PublicKey('BeunK2rKRNXbL6YsMkKDPD4f24Ms4dcj2JpsN6KCjBjY'),
+    websiteUrl: 'https://okaybulls.com/',
+    receiptType: ReceiptType.Original,
+    imageUrl:
+      'https://rawcdn.githack.com/okaybulls/token/fb8f19a8139c0be093815f0b9fc0ff80133c0e36/token.png',
+    maxStaked: 10000,
+    colors: {
+      primary: '#1C1C1C',
+      secondary: '#F4431C',
+      accent: '#F4431C',
+      fontColor: '#FFFFFF',
+    },
+  },  
 ]
