@@ -26,7 +26,7 @@ export const poolMapping: [{ name: string; pool: PublicKey }] = [
   {
     name: 'okaybulls',
     displayName: 'Okaybulls',
-    pubkey: new PublicKey('BoJSbpVoTGVJdjdRRSKnXPb4uUP2MvDwhT5bbpep3sGM'),
+    pubkey: new PublicKey('34Mu6xQSWzJDwyXrQcbmuRA6JjJQEWwwzhFubmrGD2qx'),
     websiteUrl: 'https://okaybulls.com/',
     receiptType: ReceiptType.Original,
     imageUrl:
