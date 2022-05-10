@@ -26,7 +26,9 @@ export const poolMapping: [{ name: string; pool: PublicKey }] = [
   {
     name: 'okaybulls',
     displayName: 'Okaybulls',
-    pubkey: new PublicKey('34Mu6xQSWzJDwyXrQcbmuRA6JjJQEWwwzhFubmrGD2qx'),
+    stakePoolAddress: new PublicKey(
+      '34Mu6xQSWzJDwyXrQcbmuRA6JjJQEWwwzhFubmrGD2qx'
+    ),
     websiteUrl: 'https://okaybulls.com/',
     receiptType: ReceiptType.Original,
     imageUrl:
@@ -38,5 +40,5 @@ export const poolMapping: [{ name: string; pool: PublicKey }] = [
       accent: '#F4431C',
       fontColor: '#FFFFFF',
     },
-  },  
+  },
 ]
