@@ -52,9 +52,9 @@ export const poolMapping: [{ name: string; pool: PublicKey }] = [
     maxStaked: 2121,
     imageUrl: 'https://arweave.net/MYKL6LSm8JFdqqfARCDqpmFBUlfkRplneVgIkBqyZE4',
     colors: {
-      primary: 'rgb(224,224,179)',
-      secondary: 'rgba(119, 119, 119, 0.133)',
-      fontColor: 'rgb(7, 7, 4)',
+      primary: '#698a5e',
+      secondary: '#74c48e',
+      fontColor: '#f2edd4',
     },
   },
   {
