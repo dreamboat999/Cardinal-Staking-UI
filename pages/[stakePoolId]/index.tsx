@@ -281,6 +281,10 @@ function Home() {
     unstakedSelected.includes(tk)
   const isStakedTokenSelected = (tk: TokenData) => stakedSelected.includes(tk)
 
+  if (!stakePoolMetadata) {
+    return
+  }
+
   return (
     <div>
       <Head>
