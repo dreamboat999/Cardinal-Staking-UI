@@ -58,8 +58,8 @@ export const poolMapping: [{ name: string; pool: PublicKey }] = [
     },
   },
   {
-    name: 'monsta-scientist ',
-    displayName: 'Monsta Scientist ',
+    name: 'monsta-scientist',
+    displayName: 'Monsta Scientist',
     stakePoolAddress: new PublicKey(
       '4hYMymEkyvBvY5ipLjiedvZu7Dp7oTshAsXcFVJZ9Bhv'
     ),
