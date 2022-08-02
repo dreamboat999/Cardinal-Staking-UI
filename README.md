@@ -110,6 +110,6 @@ Simply modify `pages/[stakePoolId]/index.tsx` with your own react styling, and h
 
 ## Have questions?
 
-Join our **[Discord](https://discord.gg/7NuTbsvvUh)** to get technical support as you build on Cardinal.
+Join our **[Discord](https://discord.gg/cardinallabs)** to get technical support as you build on Cardinal.
 
 ---
