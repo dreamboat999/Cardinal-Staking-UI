@@ -30,7 +30,6 @@ export const poolMapping: [{ name: string; pool: PublicKey }] = [
       'BCtcLrKhiZbFTRMB2W8iQWttYF82cLJzo7ZnnnkqXnnC'
     ),
     websiteUrl?: 'https://metaladsai.com',
-    hidden: false,
     imageUrl:
       'https://raw.githubusercontent.com/poisonlab/photo/main/WhatsApp%20Image%202022-10-05%20at%2017.53.36.jpeg',
     styles: {
