@@ -29,6 +29,7 @@ export const poolMapping: [{ name: string; pool: PublicKey }] = [
     stakePoolAddress: new PublicKey(
       'BCtcLrKhiZbFTRMB2W8iQWttYF82cLJzo7ZnnnkqXnnC'
     ),
+    hostname: 'https://stake.metaladsai.com',
     websiteUrl?: 'https://metaladsai.com',
     imageUrl:
       'https://raw.githubusercontent.com/poisonlab/photo/main/WhatsApp%20Image%202022-10-05%20at%2017.53.36.jpeg',
